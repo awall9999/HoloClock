@@ -3,7 +3,7 @@ void DispOUT(){
       digitalWrite(Latch, LOW);
       for (int Register = 0; Register <= 3; Register++) {
            
-           shiftOut(DataShift, ClockShift, MSBFIRST, DisplayData[Register]);
+           shiftOut(DataShift, ClockShift, MSBFIRST, DisplayData[Register]); // Write the Data in the 4 ShiftRegisters
            
            
               
@@ -12,11 +12,9 @@ void DispOUT(){
         
 }
 
-//void MicrosecDelay(int period){     // My Delay
-//time_now = micros();
-//do {
 
-void ClearDisplay(){
+
+void ClearDisplay(){ // Self explaining :)
   for (int i = 0; i <= 3; i++) {
  DisplayData[i] = 0;
  }

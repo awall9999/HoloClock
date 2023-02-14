@@ -1,22 +1,16 @@
 void TimeToWord()
 {
+byte TextDots=0;
+byte TextMinutes=0;
+byte TextHours=0;
+int HourCheck=0;
+
 ClearDisplay(); // First call the cleardisplay variable
 
 //24 Hour to 12
 if (Hour > 12) Hour=Hour-12;
 if (Hour == 0) Hour=12;
 
-CalcText();
-
-
-
-}
-void CalcText()
-{
-byte TextDots=0;
-byte TextMinutes=0;
-byte TextHours=0;
-int HourCheck=0;
 
 // Get the Minute 1 to 4
 int minuteten = (Minute/10); // get the power of ten
@@ -51,7 +45,7 @@ for (int i = 0; i <= 3; i++) {
   // check if past or to
   HourCheck=0;
   HourCheck=Hour;
-  if (Minute > 34) HourCheck=HourCheck+1;
+  if (Minute > 34) HourCheck=HourCheck+1; 
   if (HourCheck > 12) HourCheck=1;
 
   //Hours Value
@@ -74,10 +68,11 @@ for (int i = 0; i <= 3; i++) {
   
   
   DisplayData[i] = DisplayData[i] + it[i] + is[i] + TextDots + TextMinutes + TextHours; // Creates the Variable with all the 4 Clock Bytes
-  DispOUT();
-  if (Minute==0 && SetMode==0) {Blink(5);}
+  
 }
-
+DispOUT();
+  if (Minute==0 && SetMode==0) {Blink(10);} // Blink 10 Times every full hour
+  if (Minute==15 && SetMode==0 || Minute==30 && SetMode==0 || Minute==45 && SetMode==0) {Blink(5);} // Blink 5 Times every 15 minutes
 
 
 
